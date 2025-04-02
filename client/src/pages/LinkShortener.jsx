@@ -9,6 +9,7 @@ import {
   CardFooter,
 } from "@/components/ui/card";
 import { Alert, AlertDescription } from "@/components/ui/alert";
+import { QRCodeSVG } from "qrcode.react";
 
 const LinkShortener = () => {
   const [longUrl, setLongUrl] = useState("");
@@ -29,6 +30,7 @@ const LinkShortener = () => {
     }
   };
   return (
+    <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100">
     <Card className="w-[350px]">
       <CardHeader>
         <CardTitle>URL Shortener</CardTitle>
@@ -49,14 +51,17 @@ const LinkShortener = () => {
       </CardContent>
       <CardFooter>
         {shortUrl && (
-          <Alert>
-            <AlertDescription>
-              Short URL:{" "}
-              <a href={shortUrl} target="_blank" rel="noopener noreferrer">
-                {shortUrl}
-              </a>
-            </AlertDescription>
-          </Alert>
+          <>
+            <Alert>
+              <AlertDescription>
+                Short URL:{" "}
+                <a href={shortUrl} target="_blank" rel="noopener noreferrer">
+                  {shortUrl}
+                </a>
+              </AlertDescription>
+            </Alert>
+            <QRCodeSVG value={shortUrl} size={128} />
+          </>
         )}
         {error && (
           <Alert variant="destructive">
@@ -65,6 +70,7 @@ const LinkShortener = () => {
         )}
       </CardFooter>
     </Card>
+    </div>
   );
 };
 export default LinkShortener;
