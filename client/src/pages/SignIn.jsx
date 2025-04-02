@@ -68,7 +68,7 @@ const Signin = () => {
       });
 
       dispatch(sigInSuccess(data));
-      navigate("/");
+      navigate("/dashboard");
     } catch (error) {
       // Handle all errors in one place
       dispatch(signInFailure(error.message));
